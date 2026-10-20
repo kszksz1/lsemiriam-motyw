@@ -1,0 +1,60 @@
+name: Wdrożenie motywu na lsemiriam.pl
+
+# Wysyła folder miriam-lse/ na serwer przez FTP po każdej zmianie w gałęzi main.
+# Można też uruchomić ręcznie: zakładka Actions → „Wdrożenie motywu” → Run workflow.
+#
+# Wymagane sekrety (Settings → Secrets and variables → Actions):
+#   FTP_SERVER    np. h43.seohost.pl
+#   FTP_USERNAME  konto FTP z dostępem tylko do folderu motywu
+#   FTP_PASSWORD  hasło tego konta
+# Opcjonalnie zmienna (zakładka Variables):
+#   FTP_DIR       folder na serwerze, domyślnie ./ (gdy konto FTP wskazuje prosto na folder motywu)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'miriam-lse/**'
+      - '.github/workflows/wdrozenie.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: wdrozenie
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sprawdź, czy są ustawione dane FTP
+        id: check
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: |
+          if [ -z "$FTP_SERVER" ]; then
+            echo "::warning::Brak sekretów FTP — wdrożenie pominięte. Dodaj FTP_SERVER, FTP_USERNAME i FTP_PASSWORD."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Pobierz kod
+        if: steps.check.outputs.ready == 'true'
+        uses: actions/checkout@v4
+
+      - name: Sprawdź składnię PHP
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          find miriam-lse -name '*.php' -print0 | xargs -0 -n1 php -l > /dev/null
+
+      - name: Wyślij motyw przez FTP
+        if: steps.check.outputs.ready == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./miriam-lse/
+          server-dir: ${{ vars.FTP_DIR || './' }}
+          dangerous-clean-slate: false
