@@ -31,3 +31,7 @@ Numer wersji jest w nagłówku `miriam-lse/style.css`. Przy każdej zmianie podn
 
 - Wdrożenie się nie udało → strona działa na poprzedniej wersji; szczegóły w zakładce Actions.
 - Coś się zepsuło na stronie → cofnij ostatnie scalenie (Revert na GitHubie) albo w panelu WordPressa włącz na chwilę poprzedni motyw.
+
+## Logo i znaki
+
+Folder `marka/` zawiera oryginalne logo (PDF, wektor) i ich wersje SVG: pełne logo kolorowe i białe, logo na okręgu, sygnet. Nie jest wysyłany na serwer — to materiały źródłowe.

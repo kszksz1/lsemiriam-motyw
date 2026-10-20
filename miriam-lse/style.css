@@ -3,7 +3,7 @@ Theme Name: Miriam LSE
 Theme URI: https://lsemiriam.pl
 Author: LSE Miriam
 Description: Motyw Lubelskiej Szkoły Ewangelizacji Miriam — uwielbienie, Silent Disco, kursy SESA.
-Version: 1.5.7
+Version: 1.6.0
 Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: miriam-lse
@@ -204,8 +204,7 @@ a:hover { color: var(--orange); }
 .site-footer { padding: 56px 0 40px; background: #030719; }
 .site-footer .wrap.cols { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; align-items: flex-start; }
 .footer-about { flex: 1 1 300px; max-width: 380px; display: flex; flex-direction: column; gap: 16px; color: var(--text-muted); font-size: 15px; }
-.footer-logo { align-self: flex-start; background: var(--white); border-radius: 16px; padding: 12px 16px; }
-.footer-logo img { height: 56px; width: auto; }
+.footer-logo { align-self: flex-start; height: 64px; width: auto; }
 .footer-links { flex: 1 1 360px; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 32px; font-size: 15px; }
 .footer-bottom { margin-top: 40px; font-size: 13px; color: #9AA3C8; }
 .footer-bottom a { color: #9AA3C8; }

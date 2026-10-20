@@ -40,7 +40,7 @@ jobs:
 
       - name: Pobierz kod
         if: steps.check.outputs.ready == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Sprawdź składnię PHP
         if: steps.check.outputs.ready == 'true'

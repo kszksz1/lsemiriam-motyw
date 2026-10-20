@@ -9,7 +9,7 @@ $phone = miriam_opt( 'phone' );
 <footer class="site-footer" id="o-nas">
 	<div class="wrap cols">
 		<div class="footer-about">
-			<span class="footer-logo"><img src="<?php echo esc_url( miriam_asset( 'logo.webp' ) ); ?>" alt="Miriam — Lubelska Szkoła Ewangelizacji" width="300" height="126" loading="lazy"></span>
+			<img class="footer-logo" src="<?php echo esc_url( miriam_asset( 'logo-white.webp' ) ); ?>" alt="Miriam — Lubelska Szkoła Ewangelizacji" width="300" height="133" loading="lazy">
 			<span>Część Międzynarodowej Szkoły Ewangelizacji św. Andrzeja (SESA) i Centrum Duszpasterstwa Młodzieży w Lublinie.</span>
 			<span>Spotkania: wtorki, 19:00 · dolny kościół parafii św. Józefa, ul. Filaretów 7, Lublin</span>
 		</div>

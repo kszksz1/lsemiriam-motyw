@@ -361,3 +361,13 @@ add_action( 'template_redirect', function () {
 	get_footer();
 	exit;
 }, 1 );
+
+/* Ikona strony (karta przeglądarki, ekran telefonu) — gdy w Ustawieniach nie wybrano własnej. */
+add_action( 'wp_head', function () {
+	if ( has_site_icon() ) {
+		return;
+	}
+	echo '<link rel="icon" href="' . esc_url( miriam_asset( 'icon-32.png' ) ) . '" sizes="32x32">' . "\n";
+	echo '<link rel="icon" href="' . esc_url( miriam_asset( 'icon-512.png' ) ) . '" sizes="512x512">' . "\n";
+	echo '<link rel="apple-touch-icon" href="' . esc_url( miriam_asset( 'icon-180.png' ) ) . '">' . "\n";
+}, 3 );

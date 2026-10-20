@@ -21,7 +21,7 @@
 			$logo_id = get_theme_mod( 'custom_logo' );
 			$logo    = $logo_id ? wp_get_attachment_image_url( $logo_id, 'medium' ) : miriam_asset( 'logo.webp' );
 			?>
-			<img src="<?php echo esc_url( $logo ); ?>" alt="Miriam — Lubelska Szkoła Ewangelizacji" width="300" height="126">
+			<img src="<?php echo esc_url( $logo ); ?>" alt="Miriam — Lubelska Szkoła Ewangelizacji" width="300" height="133">
 		</a>
 
 		<nav class="main-nav" id="main-nav" aria-label="Główne menu">
