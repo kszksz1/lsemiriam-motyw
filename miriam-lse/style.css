@@ -3,7 +3,7 @@ Theme Name: Miriam LSE
 Theme URI: https://lsemiriam.pl
 Author: LSE Miriam
 Description: Motyw Lubelskiej Szkoły Ewangelizacji Miriam — uwielbienie, Silent Disco, kursy SESA.
-Version: 1.7.2
+Version: 1.9.0
 Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: miriam-lse
@@ -370,3 +370,60 @@ a.sd-stat:hover { color: var(--white); transform: translateY(-2px); }
 	.gallery-item:nth-child(6) { grid-column: span 2; }
 }
 @media (prefers-reduced-motion: reduce) { .gallery-item img { transition: none; } }
+
+/* Cytaty pod nagłówkami */
+.verse { margin: -24px 0 40px; max-width: 760px; padding-left: 20px; border-left: 3px solid var(--orange); }
+.verse blockquote { margin: 0; font-family: var(--display); font-size: clamp(19px, 2vw, 24px); line-height: 1.35; font-weight: 600; }
+.verse figcaption { margin-top: 8px; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--orange); font-weight: 600; }
+.light .verse blockquote { color: var(--ink); }
+.light .verse figcaption { color: var(--blue); }
+.page-hero .verse, .join-copy .verse { margin: 4px 0 8px; }
+
+/* Podstrony z edytora (bloki) */
+.page-blocks > .wp-block-group { padding-left: max(32px, calc((100% - 1176px) / 2)); padding-right: max(32px, calc((100% - 1176px) / 2)); }
+.page-blocks > .wp-block-group.narrow { padding-left: max(32px, calc((100% - 836px) / 2)); padding-right: max(32px, calc((100% - 836px) / 2)); }
+.page-blocks > .page-hero { display: flex; flex-direction: column; gap: 22px; }
+.page-blocks > .wp-block-group { margin: 0; }
+.page-blocks :where(p, h1, h2, h3, ul, ol) { margin-top: 0; }
+.page-blocks .display em, .page-blocks .display i { font-style: normal; color: var(--orange); }
+.page-blocks .sd .display em { color: var(--sd-pink); }
+.page-blocks .page-hero .display br { display: block; }
+.page-blocks .wp-block-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin: 0; }
+.page-blocks .wp-block-button { margin: 0; }
+.page-blocks .card .btn { align-self: flex-start; }
+.page-blocks .card .wp-block-buttons { margin-top: 4px; }
+.page-blocks .card .fact-label { margin: 0; color: var(--blue); }
+.page-blocks .card .small, .page-blocks .small { font-size: 15px; }
+.page-blocks .card .names { color: var(--ink); font-weight: 500; }
+.page-blocks .stories .card { background: var(--light-bg); }
+.page-blocks .note { margin: 0; color: var(--ink-soft); }
+.page-blocks .cards-3.cols-4 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.page-blocks .cards-3.cols-5 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.page-blocks .cards-3.cols-wide { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.page-blocks .sec.no-bottom { padding-bottom: 0; }
+.page-blocks .faq-title { margin-bottom: 32px; }
+.page-blocks .faq summary { font-weight: 600; }
+.page-blocks .course { background: var(--light-bg); align-items: flex-start; }
+.page-blocks .course-date { margin: 0; }
+.page-blocks .course-text { flex: 1 1 360px; margin: 0; color: var(--ink-soft); }
+.page-blocks .wp-block-quote.verse { margin: -24px 0 40px; max-width: 760px; padding: 0 0 0 20px; border-left: 3px solid var(--orange); }
+.page-blocks .page-hero .wp-block-quote.verse { margin: 4px 0 8px; }
+.page-blocks .wp-block-quote.verse p { margin: 0; font-family: var(--display); font-size: clamp(19px, 2vw, 24px); line-height: 1.35; font-weight: 600; }
+.page-blocks .wp-block-quote.verse cite { display: block; margin-top: 8px; font-style: normal; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--orange); font-weight: 600; }
+.page-blocks .light .wp-block-quote.verse p { color: var(--ink); }
+.page-blocks .light .wp-block-quote.verse cite { color: var(--blue); }
+.page-blocks .sd-top { padding-top: 64px; }
+.page-blocks .sd-dark { background: #2A1A4D; color: var(--white); }
+.page-blocks .sd-dark .sec-head > p { color: #E6DEF2; }
+.page-blocks .sd-dark.tight-bottom { padding-bottom: 40px; }
+.page-blocks .sd-dark.tight-top { padding-top: 40px; }
+.page-blocks .sd-dark .wp-block-buttons { margin-top: 32px; }
+.page-blocks .sd-steps li { color: #E6DEF2; font-size: 15px; }
+.page-blocks .sd-steps li strong { color: var(--white); }
+.page-blocks .sd-band { height: clamp(220px, 34vw, 440px); background: linear-gradient(180deg, rgba(5,10,38,0) 55%, var(--navy) 100%), var(--img) center 40% / cover no-repeat; }
+.page-blocks .sd .kicker { margin-bottom: 22px; }
+@media (max-width: 720px) {
+	.page-blocks > .wp-block-group, .page-blocks > .wp-block-group.narrow { padding-left: 20px; padding-right: 20px; }
+	.page-blocks .page-hero .display br { display: none; }
+	.page-blocks .page-hero .display em::before { content: " "; }
+}

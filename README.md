@@ -39,3 +39,13 @@ Folder `marka/` zawiera oryginalne logo (PDF, wektor) i ich wersje SVG: pełne l
 ## Zdjęcia
 
 Zdjęcia wspólnoty są w `miriam-lse/assets/photos/` (WebP, zmniejszone). Zdjęcia w kafelkach na górze strony głównej można podmienić bez programisty: **Wygląd → Dostosuj → Strona Miriam → Plakat kafelka 1–3**. Pozostałe zdjęcia podmienia się, wgrywając plik o tej samej nazwie.
+
+## Treści podstron
+
+Podstrony Pierwszy raz, Spotkania, Kursy, Silent Disco, O nas i Kontakt edytuje się w panelu WordPressa (Strony → Edytuj), jak zwykły tekst w blokach.
+- Pomarańczowy fragment nagłówka = tekst w kursywie (zaznacz i Ctrl+I).
+- Bloki „Krótki kod” `[miriam_…]` to elementy automatyczne: terminy (`[miriam_terminy rodzaj="kurs"]`, `rodzaj="uzdrowienie"`), formularz modlitwy (`[miriam_modlitwa]`), kalendarz i WhatsApp (`[miriam_kalendarz]`), mapa (`[miriam_mapa]`), e-mail i telefon (`[miriam_kontakt]`), Silent Disco (`[miriam_silent_disco]`), filmy z YouTube (`[miriam_filmy]`). Można je przesuwać i usuwać.
+- Przyciski: w panelu bloku wybierz styl (pomarańczowy, niebieski, kontur…).
+- Domyślne treści są w `miriam-lse/tresci/` (generuje je `narzedzia/tresci.py`). Trafiły do WordPressa jednorazowo w wersji 1.9.0; poprzednie wersje stron są w rewizjach.
+
+Adresy podstron: /pierwszy-raz/, /spotkania/, /kursy/, /silent-disco/, /o-nas/, /kontakt/, /swiadectwa/. Stare adresy (np. /historia/, /jakie-kursy-sa-dla-mnie/, /uwielbienie-silent-disco/) przekierowują na nowe (inc/pages.php). Stare, nieużywane strony są w szkicach z dopiskiem [archiwum].

@@ -1,40 +1,38 @@
 <?php
 /**
- * Podstrona. Znane adresy (Pierwszy raz, Spotkania, Kursy, Silent Disco,
- * O nas, Kontakt) mają własne układy w template-parts/; pozostałe pokazują
- * treść z edytora.
+ * Podstrona.
+ * - Pierwszy raz, Spotkania, Kursy, Silent Disco, O nas, Kontakt: treść z edytora
+ *   WordPressa (bloki) w układzie strony; elementy automatyczne to krótkie kody
+ *   [miriam_…] (terminy, formularz modlitwy, mapa…).
+ * - Gdy treść nie jest jeszcze w blokach, działa dawny układ z template-parts/.
+ * - Pozostałe strony: zwykła treść z edytora.
  */
-$slug = get_post_field( 'post_name', get_queried_object_id() );
-$map  = array(
-	'pierwsza-wizyta'          => 'first',
-	'pierwszy-raz-2'           => 'first',
-	'pierwszy-raz'             => 'first',
-	'spotkania'                => 'meetings',
-	'spotkania-wspolnoty'      => 'meetings',
-	'kursy-i-formacja'         => 'courses',
-	'czym-sa-kursy-sesa'       => 'courses',
-	'jakie-kursy-sa-dla-mnie'  => 'courses',
-	'zapisz-sie'               => 'courses',
-	'kursy'                    => 'courses',
-	'uwielbienie'              => 'silent-disco',
-	'uwielbienie-silent-disco' => 'silent-disco',
-	'silent-disco'             => 'silent-disco',
-	'poznaj-miriam'            => 'about',
-	'o-nas'                    => 'about',
-	'historia'                 => 'about',
-	'charyzmat'                => 'about',
-	'pasterz-i-odpowiedzialni' => 'about',
-	'kontakt'                  => 'contact',
-	'odwiedz-nas'              => 'contact',
-	'polityka-prywatnosci'     => 'privacy',
-	'swiadectwa'               => 'stories',
-	'privacy-policy'           => 'privacy',
-);
+$page_id = get_queried_object_id();
+$key     = miriam_section_key( get_post_field( 'post_name', $page_id ) );
 
 get_header();
 
-if ( isset( $map[ $slug ] ) && ! get_post_meta( get_queried_object_id(), 'miriam_use_editor', true ) ) {
-	get_template_part( 'template-parts/page', $map[ $slug ] );
+if ( $key && miriam_is_block_page( $page_id ) ) {
+	$s     = miriam_sections()[ $key ];
+	$style = $s['photo'] ? miriam_photo_style( $s['photo'] ) : '';
+	while ( have_posts() ) :
+		the_post();
+		?>
+<main id="main" class="page-blocks page-<?php echo esc_attr( $key ); ?>" style="<?php echo esc_attr( $style ); ?>">
+		<?php if ( 'silent-disco' === $key ) : ?>
+	<div class="sd-band" role="img" aria-label="Górny kościół św. Józefa w niebieskim świetle podczas uwielbienia"></div>
+		<?php endif; ?>
+		<?php the_content(); ?>
+		<?php
+		if ( $s['visit'] ) {
+			get_template_part( 'template-parts/visit' );
+		}
+		?>
+</main>
+		<?php
+	endwhile;
+} elseif ( $key && miriam_section_template( $key ) ) {
+	get_template_part( 'template-parts/page', miriam_section_template( $key ) );
 } else {
 	while ( have_posts() ) :
 		the_post();
