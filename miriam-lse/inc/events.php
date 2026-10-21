@@ -233,13 +233,18 @@ function miriam_short_date( $start ) {
 
 /**
  * Kalendarze .ics:
- *   /?miriam_ics=silent-disco | kurs | uzdrowienie  — jeden rodzaj (do pobrania)
- *   /?miriam_ics=all                                — kalendarz wspólnoty do subskrypcji
+ *   /kalendarz-silent-disco.ics | -kurs | -uzdrowienie  — jeden rodzaj
+ *   /kalendarz.ics                                      — kalendarz wspólnoty do subskrypcji
  *                                                     (wszystkie wydarzenia + wtorkowe spotkania)
  */
-function miriam_calendar_feed_url( $scheme = 'https' ) {
-	$url = add_query_arg( 'miriam_ics', 'all', home_url( '/' ) );
+function miriam_ics_url( $type = 'all', $scheme = 'https' ) {
+	$type = sanitize_key( $type );
+	$url  = home_url( '/' . ( 'all' === $type ? 'kalendarz.ics' : 'kalendarz-' . $type . '.ics' ) );
 	return 'webcal' === $scheme ? preg_replace( '#^https?://#', 'webcal://', $url ) : $url;
+}
+
+function miriam_calendar_feed_url( $scheme = 'https' ) {
+	return miriam_ics_url( 'all', $scheme );
 }
 
 function miriam_calendar_google_url() {
@@ -250,11 +255,27 @@ function miriam_calendar_google_url() {
 	return 'https://calendar.google.com/calendar/r?cid=' . rawurlencode( miriam_calendar_feed_url( 'webcal' ) );
 }
 
+/*
+ * Adresy z końcówką .ics (/kalendarz.ics, /kalendarz-silent-disco.ics) — kalendarze Apple
+ * i Outlook radzą sobie z nimi pewniej niż z adresem z parametrem. Stary adres
+ * /?miriam_ics=… nadal działa.
+ */
+add_action( 'wp_loaded', function () {
+	$path = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : ''; // phpcs:ignore
+	$base = (string) wp_parse_url( home_url( '/' ), PHP_URL_PATH );
+	if ( $path && preg_match( '#^' . preg_quote( rtrim( $base, '/' ), '#' ) . '/kalendarz(?:-([a-z-]+))?\.ics$#', $path, $m ) ) {
+		miriam_ics_output( empty( $m[1] ) ? 'all' : $m[1] );
+	}
+} );
+
 add_action( 'template_redirect', function () {
 	if ( empty( $_GET['miriam_ics'] ) ) {
 		return;
 	}
-	$type = sanitize_key( wp_unslash( $_GET['miriam_ics'] ) );
+	miriam_ics_output( sanitize_key( wp_unslash( $_GET['miriam_ics'] ) ) );
+} );
+
+function miriam_ics_output( $type ) {
 	$all  = 'all' === $type;
 	if ( ! $all && ! array_key_exists( $type, miriam_event_types() ) ) {
 		return;
@@ -265,7 +286,8 @@ add_action( 'template_redirect', function () {
 	$name   = $all ? 'LSE Miriam — kalendarz wspólnoty' : 'LSE Miriam — ' . miriam_event_types()[ $type ];
 	$lines  = array(
 		'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//LSE Miriam//PL', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
-		'X-WR-CALNAME:' . miriam_ics_escape( $name ), 'X-WR-TIMEZONE:' . $tz,
+		'X-WR-CALNAME:' . miriam_ics_escape( $name ), 'X-WR-CALDESC:' . miriam_ics_escape( 'Wydarzenia Lubelskiej Szkoły Ewangelizacji Miriam' ),
+		'X-WR-TIMEZONE:' . $tz, 'X-APPLE-CALENDAR-COLOR:#F8981F',
 		'REFRESH-INTERVAL;VALUE=DURATION:PT6H', 'X-PUBLISHED-TTL:PT6H',
 		'BEGIN:VTIMEZONE', 'TZID:Europe/Warsaw',
 		'BEGIN:DAYLIGHT', 'TZOFFSETFROM:+0100', 'TZOFFSETTO:+0200', 'TZNAME:CEST', 'DTSTART:19700329T020000', 'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU', 'END:DAYLIGHT',
@@ -323,10 +345,14 @@ add_action( 'template_redirect', function () {
 	}
 	nocache_headers();
 	header( 'Content-Type: text/calendar; charset=utf-8' );
-	header( 'Content-Disposition: ' . ( $all ? 'inline' : 'attachment' ) . '; filename="miriam-' . $type . '.ics"' );
-	echo implode( "\r\n", $folded ) . "\r\n"; // phpcs:ignore
+	// inline: iPhone pokazuje wtedy listę wydarzeń z przyciskiem „Dodaj wszystkie” zamiast zapisywać plik.
+	header( 'Content-Disposition: inline; filename="miriam-' . $type . '.ics"' );
+	header( 'X-Robots-Tag: noindex' );
+	if ( 'HEAD' !== ( isset( $_SERVER['REQUEST_METHOD'] ) ? $_SERVER['REQUEST_METHOD'] : '' ) ) { // phpcs:ignore
+		echo implode( "\r\n", $folded ) . "\r\n"; // phpcs:ignore
+	}
 	exit;
-} );
+}
 
 /* RFC 5545: lines longer than 75 bytes are folded. */
 function miriam_ics_fold( $line ) {
