@@ -31,3 +31,11 @@ Numer wersji jest w nagłówku `miriam-lse/style.css`. Przy każdej zmianie podn
 
 - Wdrożenie się nie udało → strona działa na poprzedniej wersji; szczegóły w zakładce Actions.
 - Coś się zepsuło na stronie → cofnij ostatnie scalenie (Revert na GitHubie) albo w panelu WordPressa włącz na chwilę poprzedni motyw.
+
+## Logo i znaki
+
+Folder `marka/` zawiera oryginalne logo (PDF, wektor) i ich wersje SVG: pełne logo kolorowe i białe, logo na okręgu, sygnet. Nie jest wysyłany na serwer — to materiały źródłowe.
+
+## Zdjęcia
+
+Zdjęcia wspólnoty są w `miriam-lse/assets/photos/` (WebP, zmniejszone). Zdjęcia w kafelkach na górze strony głównej można podmienić bez programisty: **Wygląd → Dostosuj → Strona Miriam → Plakat kafelka 1–3**. Pozostałe zdjęcia podmienia się, wgrywając plik o tej samej nazwie.

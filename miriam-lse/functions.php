@@ -55,6 +55,20 @@ function miriam_asset( $file ) {
 }
 
 /**
+ * URL of a community photo (assets/photos/*.webp).
+ */
+function miriam_photo( $name ) {
+	return miriam_asset( 'photos/' . $name . '.webp' );
+}
+
+/**
+ * Inline style with a background photo for photo sections.
+ */
+function miriam_photo_style( $name ) {
+	return '--img:url(' . esc_url( miriam_photo( $name ) ) . ')';
+}
+
+/**
  * URL of a page by slug, or a fallback (anchor on the front page).
  */
 function miriam_page_url( $slugs, $fallback ) {
@@ -361,3 +375,13 @@ add_action( 'template_redirect', function () {
 	get_footer();
 	exit;
 }, 1 );
+
+/* Ikona strony (karta przeglądarki, ekran telefonu) — gdy w Ustawieniach nie wybrano własnej. */
+add_action( 'wp_head', function () {
+	if ( has_site_icon() ) {
+		return;
+	}
+	echo '<link rel="icon" href="' . esc_url( miriam_asset( 'icon-32.png' ) ) . '" sizes="32x32">' . "\n";
+	echo '<link rel="icon" href="' . esc_url( miriam_asset( 'icon-512.png' ) ) . '" sizes="512x512">' . "\n";
+	echo '<link rel="apple-touch-icon" href="' . esc_url( miriam_asset( 'icon-180.png' ) ) . '">' . "\n";
+}, 3 );

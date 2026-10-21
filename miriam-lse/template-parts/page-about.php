@@ -5,7 +5,7 @@
 $story = miriam_page_url( array( 'swiadectwa' ), '' );
 ?>
 <main id="main">
-	<section class="page-hero glow">
+	<section class="page-hero glow has-photo" style="<?php echo esc_attr( miriam_photo_style( 'wspolnota' ) ); ?>">
 		<div class="wrap" style="display:flex;flex-direction:column;gap:22px">
 			<p class="kicker">O nas</p>
 			<h1 class="display">Uczniowie Jezusa,<br><span class="accent">którzy prowadzą innych do Niego.</span></h1>

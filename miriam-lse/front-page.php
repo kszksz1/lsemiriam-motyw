@@ -36,9 +36,8 @@ $tiles = array();
 for ( $i = 1; $i <= 3; $i++ ) {
 	$video  = miriam_opt( 'hero_video_' . $i );
 	$poster = miriam_img_url( 'hero_poster_' . $i );
-	$order  = array( 1 => 1, 2 => 0, 3 => 2 );
-	$thumb  = isset( $thumbs[ $order[ $i ] ] ) ? $thumbs[ $order[ $i ] ] : miriam_asset( 'silent-disco.webp' );
-	$tiles[] = array( 'video' => $video, 'img' => $poster ? $poster : $thumb );
+	$photo  = array( 1 => 'hero-perkusja', 2 => 'hero-spiew', 3 => 'hero-adoracja' );
+	$tiles[] = array( 'video' => $video, 'img' => $poster ? $poster : miriam_photo( $photo[ $i ] ) );
 }
 
 $sd_poster = miriam_img_url( 'sd_poster' );
@@ -194,9 +193,37 @@ $next_h    = $heal ? $heal[0] : null;
 	</div>
 </section>
 
+<section class="sec gallery-sec" id="galeria">
+	<div class="wrap">
+		<div class="sec-head">
+			<div>
+				<p class="kicker">Tak u nas jest</p>
+				<h2 class="display h-md">Tu jest Twoje miejsce.</h2>
+			</div>
+			<p>Uwielbienie, adoracja, rozmowy do późna i wspólne wyjazdy. Więcej zdjęć i rolek wrzuca nasza ekipa medialna na Instagram.</p>
+		</div>
+		<div class="gallery">
+			<?php
+			$gal = array(
+				'wspolnota'  => 'Wspólnota po wtorkowym spotkaniu',
+				'muzyka'     => 'Zespół uwielbienia przy klawiszach',
+				'adoracja'   => 'Adoracja Najświętszego Sakramentu',
+				'jezus-zyje' => 'Grupa w koszulkach „Jezus żyje”',
+				'sd-tekst'   => 'Kościół św. Józefa podczas uwielbienia',
+				'twoje-miejsce' => 'Kartka z napisem „Tu jest Twoje miejsce”',
+			);
+			foreach ( $gal as $g => $alt ) :
+				?>
+				<figure class="gallery-item"><img src="<?php echo esc_url( miriam_photo( $g ) ); ?>" alt="<?php echo esc_attr( $alt ); ?>" loading="lazy" decoding="async" width="1200" height="800"></figure>
+			<?php endforeach; ?>
+		</div>
+		<a class="btn btn-ghost btn-sm" style="margin-top:24px" href="<?php echo esc_url( $l['instagram'] ); ?>"><?php echo miriam_icon( 'instagram', 18 ); ?>Więcej na Instagramie</a>
+	</div>
+</section>
+
 <section class="sec" id="uzdrowienie">
 	<div class="wrap">
-		<div class="heal-card">
+		<div class="heal-card has-photo" style="<?php echo esc_attr( miriam_photo_style( 'uzdrowienie' ) ); ?>">
 			<div class="heal-copy">
 				<p class="kicker">Raz w miesiącu · wtorek 19:00 · dolny kościół</p>
 				<h2 class="display h-md">Msza z modlitwą o uzdrowienie.</h2>

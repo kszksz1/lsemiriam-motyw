@@ -6,7 +6,7 @@ $heal = miriam_get_events( 'uzdrowienie', 6 );
 $mg   = miriam_months();
 ?>
 <main id="main">
-	<section class="page-hero glow">
+	<section class="page-hero glow has-photo" style="<?php echo esc_attr( miriam_photo_style( 'konferencja' ) ); ?>">
 		<div class="wrap" style="display:flex;flex-direction:column;gap:22px">
 			<p class="kicker">Spotkania wspólnoty</p>
 			<h1 class="display">Każdy wtorek, 19:00.<br><span class="accent">Przez cały rok.</span></h1>

@@ -6,7 +6,7 @@ $post_id = get_queried_object_id();
 $stories = miriam_parse_stories( get_post_field( 'post_content', $post_id ) );
 ?>
 <main id="main">
-	<section class="page-hero glow">
+	<section class="page-hero glow has-photo" style="<?php echo esc_attr( miriam_photo_style( 'modlitwa' ) ); ?>">
 		<div class="wrap" style="display:flex;flex-direction:column;gap:22px">
 			<p class="kicker">Historie spotkania</p>
 			<h1 class="display">Co Bóg dał mi<br><span class="accent">przez LSE Miriam?</span></h1>
