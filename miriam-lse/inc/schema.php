@@ -84,7 +84,7 @@ add_action( 'wp_head', function () {
 				'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
 				'location'            => miriam_schema_place( $ev['place'] ),
 				'organizer'           => array( '@id' => home_url( '/#org' ) ),
-				'image'               => array( 'silent-disco' === $type ? miriam_asset( 'silent-disco.webp' ) : miriam_asset( 'share.jpg' ) ),
+				'image'               => array( 'silent-disco' === $type ? miriam_asset( 'silent-disco.webp' ) : ( 'uzdrowienie' === $type ? miriam_photo( 'uzdrowienie' ) : miriam_photo( 'wspolnota' ) ) ),
 				'url'                 => $ev['link'] ? $ev['link'] : home_url( '/' ),
 			);
 			if ( $ev['end'] ) {
@@ -94,8 +94,27 @@ add_action( 'wp_head', function () {
 				$dt->modify( '+2 hours' );
 				$item['endDate'] = $dt->format( 'c' );
 			}
+			// Wykonawca: zespół uwielbienia przy Silent Disco, w pozostałych — wspólnota.
+			$item['performer'] = 'silent-disco' === $type
+				? array( '@type' => 'PerformingGroup', 'name' => 'Zespół uwielbienia LSE Miriam', 'url' => home_url( '/' ) )
+				: array( '@type' => 'Organization', 'name' => 'Lubelska Szkoła Ewangelizacji Miriam', 'url' => home_url( '/' ) );
 			if ( 'kurs' !== $type ) {
 				$item['isAccessibleForFree'] = true;
+				$item['offers'] = array(
+					'@type'         => 'Offer',
+					'price'         => '0',
+					'priceCurrency' => 'PLN',
+					'availability'  => 'https://schema.org/InStock',
+					'url'           => home_url( '/' ),
+					'validFrom'     => gmdate( 'Y-m-d', strtotime( $ev['start'] . ' -60 days' ) ),
+				);
+			} elseif ( $ev['link'] ) {
+				$item['offers'] = array(
+					'@type'         => 'Offer',
+					'availability'  => 'https://schema.org/InStock',
+					'url'           => $ev['link'],
+					'priceCurrency' => 'PLN',
+				);
 			}
 			$graph[] = $item;
 		}
