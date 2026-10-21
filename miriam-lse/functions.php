@@ -55,6 +55,13 @@ function miriam_asset( $file ) {
 }
 
 /**
+ * Cytat z Pisma lub Magisterium pod nagłówkiem sekcji.
+ */
+function miriam_verse( $text, $ref ) {
+	return '<figure class="verse"><blockquote>„' . esc_html( $text ) . '”</blockquote><figcaption>' . esc_html( $ref ) . '</figcaption></figure>';
+}
+
+/**
  * URL of a community photo (assets/photos/*.webp).
  */
 function miriam_photo( $name ) {
@@ -328,11 +335,11 @@ add_action( 'template_redirect', function () {
 		array( 'pierwsza-wizyta', 'pierwszy-raz-2', 'pierwszy-raz' ),
 		array( 'spotkania-wspolnoty', 'spotkania' ),
 		array( 'uwielbienie', 'uwielbienie-silent-disco' ),
-		array( 'kursy-i-formacja', 'jakie-kursy-sa-dla-mnie', 'czym-sa-kursy-sesa', 'zapisz-sie' ),
-		array( 'poznaj-miriam', 'historia', 'charyzmat', 'pasterz-i-odpowiedzialni' ),
-		array( 'kontakt', 'odwiedz-nas' ),
+		array( 'kursy-i-formacja', 'jakie-kursy-sa-dla-mnie', 'czym-sa-kursy-sesa', 'zapisz-sie', 'kursy', 'zapisy', 'nowe-zycie', 'emaus', 'jan', 'jezus-w-4-ewangeliach', 'mojzesz', 'kamch' ),
+		array( 'poznaj-miriam', 'historia', 'charyzmat', 'pasterz-i-odpowiedzialni', 'o-nas', 'wspolnota', 'rada-wspolnoty', 'lider' ),
+		array( 'kontakt', 'odwiedz-nas', 'nasze-socialmedia' ),
 	);
-	$anchors = array( 'historia' => '#historia', 'charyzmat' => '#charyzmat', 'pasterz-i-odpowiedzialni' => '#pasterz', 'jakie-kursy-sa-dla-mnie' => '#ktory-kurs', 'zapisz-sie' => '#terminy' );
+	$anchors = array( 'historia' => '#historia', 'charyzmat' => '#charyzmat', 'pasterz-i-odpowiedzialni' => '#pasterz', 'jakie-kursy-sa-dla-mnie' => '#ktory-kurs', 'zapisz-sie' => '#terminy', 'zapisy' => '#terminy', 'nowe-zycie' => '#ktory-kurs', 'emaus' => '#ktory-kurs', 'jan' => '#ktory-kurs', 'jezus-w-4-ewangeliach' => '#ktory-kurs', 'mojzesz' => '#ktory-kurs', 'rada-wspolnoty' => '#pasterz', 'lider' => '#pasterz' );
 	foreach ( $groups as $g ) {
 		$pos = array_search( $slug, $g, true );
 		if ( false === $pos ) {

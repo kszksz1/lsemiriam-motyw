@@ -261,6 +261,7 @@ $next_h    = $heal ? $heal[0] : null;
 				<h2 class="display h-md">Pierwszy raz? Nie musisz być „gotowy”.</h2>
 				<p>Nie musisz znać pieśni ani wiedzieć, jak się zachować. Przyjdź taki, jaki jesteś.</p>
 			</div>
+			<?php echo miriam_verse( 'Zróbcie wszystko, cokolwiek wam powie', 'J 2,5' ); // phpcs:ignore ?>
 			<div class="cards-3">
 				<div class="card"><span class="num">01</span><h3>Przyjdź we wtorek</h3><p>O 19:00 do dolnego kościoła przy Filaretów 7. Wejście z tyłu kościoła, od ul. Rymwida (od strony kładki).</p></div>
 				<div class="card"><span class="num">02</span><h3>Pozwól sobie być</h3><p>Śpiewamy, modlimy się, słuchamy konferencji. Możesz się włączyć albo po prostu posłuchać.</p></div>
@@ -309,6 +310,7 @@ $next_h    = $heal ? $heal[0] : null;
 				<h2 class="display h-md">Zrób krok w głąb.</h2>
 				<p>Kursy Szkoły Ewangelizacji św. Andrzeja (SESA) — kilka dni, które potrafią zmienić życie.</p>
 			</div>
+			<?php echo miriam_verse( 'A co usłyszałeś ode mnie za pośrednictwem wielu świadków, to przekaż ludziom godnym zaufania, którzy będą zdolni i innych nauczać', '2 Tm 2,2' ); // phpcs:ignore ?>
 			<?php if ( $courses ) : ?>
 				<div class="courses">
 					<?php foreach ( array_slice( $courses, 0, 4 ) as $c ) { echo miriam_course_row( $c ); } // phpcs:ignore ?>
@@ -331,6 +333,7 @@ $next_h    = $heal ? $heal[0] : null;
 		<div class="join-copy">
 			<h2 class="display h-xl" style="font-size:clamp(44px,6.4vw,92px)">Do zobaczenia<br><span class="accent">we wtorek.</span></h2>
 			<p class="lead">Dolny kościół parafii św. Józefa, ul. Filaretów 7, Lublin. Wejście z tyłu kościoła, od ul. Rymwida (od strony kładki).</p>
+			<?php echo miriam_verse( 'Idźcie więc i czyńcie uczniów ze wszystkich narodów', 'Mt 28,19' ); // phpcs:ignore ?>
 			<div class="btn-row">
 				<a class="btn btn-orange" href="<?php echo esc_url( $l['maps'] ); ?>"><?php echo miriam_icon( 'pin', 18 ); ?>Prowadź mnie</a>
 				<?php $email = miriam_opt( 'email' ); if ( $email ) : ?>

@@ -21,6 +21,7 @@ $story = miriam_page_url( array( 'swiadectwa' ), '' );
 					<h2 class="display h-md">Charyzmat</h2>
 					<p>Chcemy być uczniami, którzy każdego dnia idą za Jezusem jako Panem i Zbawicielem, i Jego świadkami wszędzie, gdzie jesteśmy. Wzorem jest dla nas Maryja — pierwsza i najwierniejsza uczennica.</p>
 				</div>
+				<?php echo miriam_verse( 'Nie możemy być spokojni, myśląc o milionach naszych braci i sióstr, również odkupionych krwią Chrystusa, którzy żyją, nie znając miłości Boga', 'św. Jan Paweł II, Redemptoris missio 86' ); // phpcs:ignore ?>
 				<div class="cards-3" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
 					<div class="card"><span class="num">01</span><h3>Uwielbienie</h3><p>Modlitwa, która stawia Boga w centrum.</p></div>
 					<div class="card"><span class="num">02</span><h3>Ewangelizacja</h3><p>Głoszenie Jezusa na wiele sposobów.</p></div>

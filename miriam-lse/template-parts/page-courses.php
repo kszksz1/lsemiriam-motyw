@@ -20,6 +20,7 @@ $catalog = array(
 			<p class="kicker">Kursy Szkoły Ewangelizacji św. Andrzeja</p>
 			<h1 class="display">Kilka dni,<br><span class="accent">które zmieniają życie.</span></h1>
 			<p class="lead">Kursy SESA to intensywne rekolekcje: głoszenie, modlitwa, praca w małych grupach, świadectwa i osobista decyzja wiary. Nie wykład — spotkanie z Bogiem, który kocha, zbawia, uzdrawia i posyła.</p>
+			<?php echo miriam_verse( 'Idźcie więc i czyńcie uczniów ze wszystkich narodów', 'Mt 28,19' ); // phpcs:ignore ?>
 			<div class="btn-row"><a class="btn btn-orange" href="#terminy">Najbliższe terminy</a><a class="btn btn-ghost" href="#ktory-kurs">Który kurs dla mnie?</a></div>
 		</div>
 	</section>
