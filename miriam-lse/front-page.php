@@ -135,7 +135,7 @@ $next_h    = $heal ? $heal[0] : null;
 						<?php endforeach; ?>
 					</ul>
 					<p class="sd-note">Zawsze o 20:00 w górnym kościele, ul. Filaretów 7. Wcześniej, o 19:00, Msza Święta.</p>
-					<a class="btn btn-white btn-sm" href="<?php echo esc_url( add_query_arg( 'miriam_ics', 'silent-disco', home_url( '/' ) ) ); ?>"><?php echo miriam_icon( 'calendar', 18 ); ?>Dodaj terminy do kalendarza</a>
+					<a class="btn btn-white btn-sm" href="<?php echo esc_url( miriam_ics_url( 'silent-disco' ) ); ?>"><?php echo miriam_icon( 'calendar', 18 ); ?>Dodaj terminy do kalendarza</a>
 				<?php else : ?>
 					<p class="sd-note">Nowe terminy wkrótce — śledź nas na <a href="<?php echo esc_url( $l['instagram'] ); ?>">Instagramie</a>.</p>
 				<?php endif; ?>
@@ -230,7 +230,7 @@ $next_h    = $heal ? $heal[0] : null;
 				<p class="lead">Otwarta Msza Święta z mocną modlitwą charyzmatyczną i uwielbieniem. Przyjdź ze swoją chorobą, zranieniem, pytaniem — i ze swoimi bliskimi. Jezus wciąż uzdrawia.</p>
 				<div class="btn-row">
 					<?php if ( $heal ) : ?>
-						<a class="btn btn-orange" href="<?php echo esc_url( add_query_arg( 'miriam_ics', 'uzdrowienie', home_url( '/' ) ) ); ?>"><?php echo miriam_icon( 'calendar', 18 ); ?>Dodaj do kalendarza</a>
+						<a class="btn btn-orange" href="<?php echo esc_url( miriam_ics_url( 'uzdrowienie' ) ); ?>"><?php echo miriam_icon( 'calendar', 18 ); ?>Dodaj do kalendarza</a>
 					<?php endif; ?>
 					<a class="btn btn-ghost" href="#dolacz">Jak dotrzeć</a>
 				</div>

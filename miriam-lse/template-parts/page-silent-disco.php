@@ -34,7 +34,7 @@ $videos   = miriam_latest_videos( 7 );
 						</ul>
 					<?php endif; ?>
 					<p class="sd-note">Niedziela: 19:00 Msza Święta, 20:00 Silent Disco. Górny kościół św. Józefa, ul. Filaretów 7. Wstęp wolny.</p>
-					<a class="btn btn-white btn-sm" href="<?php echo esc_url( add_query_arg( 'miriam_ics', 'silent-disco', home_url( '/' ) ) ); ?>"><?php echo miriam_icon( 'calendar', 18 ); ?>Dodaj do kalendarza</a>
+					<a class="btn btn-white btn-sm" href="<?php echo esc_url( miriam_ics_url( 'silent-disco' ) ); ?>"><?php echo miriam_icon( 'calendar', 18 ); ?>Dodaj do kalendarza</a>
 				</div>
 				<?php if ( $feat_id ) : ?><div class="sd-video"><?php echo miriam_youtube( $feat_id, miriam_opt( 'featured_title' ) ); // phpcs:ignore ?></div><?php endif; ?>
 				<a class="sd-stat" href="<?php echo esc_url( $l['youtube'] ); ?>" target="_blank" rel="noopener"><strong>2 mln+</strong><span>wyświetleń jednej pieśni z naszych uwielbień na YouTube</span><span class="sd-stat-link">Zobacz kanał →</span></a>
