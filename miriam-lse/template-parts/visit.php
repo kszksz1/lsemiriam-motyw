@@ -11,7 +11,7 @@ $l = miriam_links();
 			<p class="lead">Dolny kościół parafii św. Józefa, ul. Filaretów 7, Lublin. Wejście z tyłu kościoła, od ul. Rymwida (od strony kładki).</p>
 			<div class="btn-row">
 				<a class="btn btn-orange" href="<?php echo esc_url( $l['maps'] ); ?>"><?php echo miriam_icon( 'pin', 18 ); ?>Jak dotrzeć</a>
-				<a class="btn btn-ghost" href="<?php echo esc_url( miriam_page_url( array( 'pierwsza-wizyta', 'pierwszy-raz-2' ), home_url( '/#pierwszy-raz' ) ) ); ?>">Pierwszy raz?</a>
+				<a class="btn btn-ghost" href="<?php echo esc_url( miriam_section_url( 'first', home_url( '/#pierwszy-raz' ) ) ); ?>">Pierwszy raz?</a>
 			</div>
 		</div>
 	</div>

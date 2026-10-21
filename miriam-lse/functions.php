@@ -15,6 +15,7 @@ require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/prayer.php';
 require_once get_template_directory() . '/inc/schema.php';
 require_once get_template_directory() . '/inc/stories.php';
+require_once get_template_directory() . '/inc/pages.php';
 
 add_action( 'after_setup_theme', function () {
 	load_theme_textdomain( 'miriam-lse' );
@@ -130,13 +131,13 @@ function miriam_youtube( $id, $title = '' ) {
  */
 function miriam_default_menu() {
 	$items = array(
-		array( 'Pierwszy raz', miriam_page_url( array( 'pierwsza-wizyta', 'pierwszy-raz-2', 'pierwszy-raz' ), home_url( '/#pierwszy-raz' ) ) ),
-		array( 'Spotkania', miriam_page_url( array( 'spotkania-wspolnoty', 'spotkania' ), home_url( '/#uzdrowienie' ) ) ),
-		array( 'Silent Disco', miriam_page_url( array( 'uwielbienie', 'uwielbienie-silent-disco' ), home_url( '/#silent-disco' ) ) ),
-		array( 'Kursy', miriam_page_url( array( 'kursy-i-formacja', 'jakie-kursy-sa-dla-mnie' ), home_url( '/#kursy' ) ) ),
-		array( 'Historie', miriam_page_url( array( 'swiadectwa' ), home_url( '/#historie' ) ) ),
-		array( 'O nas', miriam_page_url( array( 'poznaj-miriam', 'historia' ), home_url( '/#o-nas' ) ) ),
-		array( 'Kontakt', miriam_page_url( array( 'kontakt', 'odwiedz-nas' ), home_url( '/#dolacz' ) ) ),
+		array( 'Pierwszy raz', miriam_section_url( 'first', home_url( '/#pierwszy-raz' ) ) ),
+		array( 'Spotkania', miriam_section_url( 'meetings', home_url( '/#uzdrowienie' ) ) ),
+		array( 'Silent Disco', miriam_section_url( 'silent-disco', home_url( '/#silent-disco' ) ) ),
+		array( 'Kursy', miriam_section_url( 'courses', home_url( '/#kursy' ) ) ),
+		array( 'Historie', miriam_section_url( 'stories', home_url( '/#historie' ) ) ),
+		array( 'O nas', miriam_section_url( 'about', home_url( '/#o-nas' ) ) ),
+		array( 'Kontakt', miriam_section_url( 'contact', home_url( '/#dolacz' ) ) ),
 	);
 	$current = untrailingslashit( home_url( add_query_arg( array() ) ) );
 	echo '<ul>';
@@ -322,41 +323,6 @@ add_filter( 'document_title_separator', function () {
 	return '·';
 } );
 
-/**
- * Stare i zdublowane adresy podstron → jeden adres docelowy (301).
- * Docelowy jest ten, do którego prowadzi menu.
- */
-add_action( 'template_redirect', function () {
-	if ( ! is_page() || is_front_page() ) {
-		return;
-	}
-	$slug   = get_post_field( 'post_name', get_queried_object_id() );
-	$groups = array(
-		array( 'pierwsza-wizyta', 'pierwszy-raz-2', 'pierwszy-raz' ),
-		array( 'spotkania-wspolnoty', 'spotkania' ),
-		array( 'uwielbienie', 'uwielbienie-silent-disco' ),
-		array( 'kursy-i-formacja', 'jakie-kursy-sa-dla-mnie', 'czym-sa-kursy-sesa', 'zapisz-sie', 'kursy', 'zapisy', 'nowe-zycie', 'emaus', 'jan', 'jezus-w-4-ewangeliach', 'mojzesz', 'kamch' ),
-		array( 'poznaj-miriam', 'historia', 'charyzmat', 'pasterz-i-odpowiedzialni', 'o-nas', 'wspolnota', 'rada-wspolnoty', 'lider' ),
-		array( 'kontakt', 'odwiedz-nas', 'nasze-socialmedia' ),
-	);
-	$anchors = array( 'historia' => '#historia', 'charyzmat' => '#charyzmat', 'pasterz-i-odpowiedzialni' => '#pasterz', 'jakie-kursy-sa-dla-mnie' => '#ktory-kurs', 'zapisz-sie' => '#terminy', 'zapisy' => '#terminy', 'nowe-zycie' => '#ktory-kurs', 'emaus' => '#ktory-kurs', 'jan' => '#ktory-kurs', 'jezus-w-4-ewangeliach' => '#ktory-kurs', 'mojzesz' => '#ktory-kurs', 'rada-wspolnoty' => '#pasterz', 'lider' => '#pasterz' );
-	foreach ( $groups as $g ) {
-		$pos = array_search( $slug, $g, true );
-		if ( false === $pos ) {
-			continue;
-		}
-		foreach ( $g as $i => $candidate ) {
-			if ( $i >= $pos ) {
-				break; // jesteśmy na najważniejszym istniejącym adresie
-			}
-			$target = get_page_by_path( $candidate );
-			if ( $target && 'publish' === $target->post_status ) {
-				wp_safe_redirect( get_permalink( $target ) . ( isset( $anchors[ $slug ] ) ? $anchors[ $slug ] : '' ), 301 );
-				exit;
-			}
-		}
-	}
-}, 5 );
 
 /* Polityka prywatności działa nawet wtedy, gdy w WordPressie nie ma takiej strony. */
 add_action( 'template_redirect', function () {

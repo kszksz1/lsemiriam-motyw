@@ -2,7 +2,7 @@
 /**
  * O nas: historia, charyzmat, pasterz i odpowiedzialni.
  */
-$story = miriam_page_url( array( 'swiadectwa' ), '' );
+$story = miriam_section_url( 'stories' );
 ?>
 <main id="main">
 	<section class="page-hero glow has-photo" style="<?php echo esc_attr( miriam_photo_style( 'wspolnota' ) ); ?>">

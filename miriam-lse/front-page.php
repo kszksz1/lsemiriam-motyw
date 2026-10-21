@@ -13,8 +13,8 @@ $feat_id  = miriam_yt_id( miriam_opt( 'featured_video' ) );
 $feat_tit = miriam_opt( 'featured_title' );
 $months_s = miriam_months( 'short' );
 
-$first_url = miriam_page_url( array( 'pierwsza-wizyta', 'pierwszy-raz-2', 'pierwszy-raz' ), home_url( '/#pierwszy-raz' ) );
-$story_url = miriam_page_url( array( 'swiadectwa' ), '' );
+$first_url = miriam_section_url( 'first', home_url( '/#pierwszy-raz' ) );
+$story_url = miriam_section_url( 'stories' );
 
 /* Hero tiles: video → photo → YouTube thumbnail. */
 $thumbs = array();
@@ -315,7 +315,7 @@ $next_h    = $heal ? $heal[0] : null;
 				<div class="courses">
 					<?php foreach ( array_slice( $courses, 0, 4 ) as $c ) { echo miriam_course_row( $c ); } // phpcs:ignore ?>
 				</div>
-				<a class="btn btn-outline" style="margin-top:24px" href="<?php echo esc_url( miriam_page_url( array( 'kursy-i-formacja', 'jakie-kursy-sa-dla-mnie' ), home_url( '/#kursy' ) ) ); ?>">Wszystkie kursy<?php echo count( $courses ) > 4 ? ' (' . (int) count( $courses ) . ')' : ''; ?> i który wybrać</a>
+				<a class="btn btn-outline" style="margin-top:24px" href="<?php echo esc_url( miriam_section_url( 'courses', home_url( '/#kursy' ) ) ); ?>">Wszystkie kursy<?php echo count( $courses ) > 4 ? ' (' . (int) count( $courses ) . ')' : ''; ?> i który wybrać</a>
 			<?php else : ?>
 				<p>Nowe terminy kursów wkrótce.</p>
 			<?php endif; ?>
