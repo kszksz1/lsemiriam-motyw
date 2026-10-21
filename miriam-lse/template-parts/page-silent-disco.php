@@ -11,7 +11,8 @@ $poster   = $poster ? $poster : miriam_asset( 'silent-disco.webp' );
 $videos   = miriam_latest_videos( 7 );
 ?>
 <main id="main">
-	<section class="sec sd" style="padding-top:88px">
+	<div class="sd-band" style="<?php echo esc_attr( miriam_photo_style( 'sd-kosciol' ) ); ?>" role="img" aria-label="Górny kościół św. Józefa w niebieskim świetle podczas uwielbienia"></div>
+	<section class="sec sd" style="padding-top:64px">
 		<div class="wrap">
 			<div class="sec-head">
 				<div>

@@ -7,7 +7,7 @@ $email = miriam_opt( 'email' );
 $phone = miriam_opt( 'phone' );
 ?>
 <main id="main">
-	<section class="page-hero glow">
+	<section class="page-hero glow has-photo" style="<?php echo esc_attr( miriam_photo_style( 'sd-kosciol' ) ); ?>">
 		<div class="wrap" style="display:flex;flex-direction:column;gap:22px">
 			<p class="kicker">Kontakt i dojazd</p>
 			<h1 class="display">Napisz, zadzwoń<br><span class="accent">albo po prostu przyjdź.</span></h1>

@@ -15,7 +15,7 @@ $catalog = array(
 );
 ?>
 <main id="main">
-	<section class="page-hero glow">
+	<section class="page-hero glow has-photo" style="<?php echo esc_attr( miriam_photo_style( 'jezus-zyje' ) ); ?>">
 		<div class="wrap" style="display:flex;flex-direction:column;gap:22px">
 			<p class="kicker">Kursy Szkoły Ewangelizacji św. Andrzeja</p>
 			<h1 class="display">Kilka dni,<br><span class="accent">które zmieniają życie.</span></h1>

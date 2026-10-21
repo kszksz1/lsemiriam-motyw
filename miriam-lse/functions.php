@@ -55,6 +55,20 @@ function miriam_asset( $file ) {
 }
 
 /**
+ * URL of a community photo (assets/photos/*.webp).
+ */
+function miriam_photo( $name ) {
+	return miriam_asset( 'photos/' . $name . '.webp' );
+}
+
+/**
+ * Inline style with a background photo for photo sections.
+ */
+function miriam_photo_style( $name ) {
+	return '--img:url(' . esc_url( miriam_photo( $name ) ) . ')';
+}
+
+/**
  * URL of a page by slug, or a fallback (anchor on the front page).
  */
 function miriam_page_url( $slugs, $fallback ) {

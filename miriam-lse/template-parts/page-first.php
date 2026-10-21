@@ -5,7 +5,7 @@
 $l = miriam_links();
 ?>
 <main id="main">
-	<section class="page-hero glow">
+	<section class="page-hero glow has-photo" style="<?php echo esc_attr( miriam_photo_style( 'grupa' ) ); ?>">
 		<div class="wrap" style="display:flex;flex-direction:column;gap:22px">
 			<p class="kicker">Pierwszy raz?</p>
 			<h1 class="display">Nie musisz mieć poukładanego życia,<br><span class="accent">żeby spotkać Boga.</span></h1>
